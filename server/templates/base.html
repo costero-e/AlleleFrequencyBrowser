@@ -24,7 +24,7 @@ background: linear-gradient(90deg, rgb(36, 0, 24) 0%, rgba(24,55,119,0.112504376
               <img class="GDI-logo" src="https://gdi.onemilliongenomes.eu/images/gdi-logo.svg" alt="GDI" style="height: 10vh"></img>
               <div class="containersecond">
 
-                  <form method="post center" style="text-align: center; margin-top: 20px">
+                  <form method="post" style="text-align: center; margin-top: 20px">
                     {% csrf_token %}
                     {% for f in form %}
                     {{ f.errors }}
@@ -32,12 +32,40 @@ background: linear-gradient(90deg, rgb(36, 0, 24) 0%, rgba(24,55,119,0.112504376
                     <span class="col">{{f}} </span>   
                   
                     {% endfor %}
-                    <button type="submit" class="btn mb-2">Search</button>
+                    <button type="submit" class="boto btn mb-2">Search</button>
+                    <a href="/" type="submit" class="btn btn-warning mb-2">Reset</a>
               <div class="row">
                   </div>
                 </div>
               </div>
                   </form>
+                  <div class="row center">
+                    {% if response %}
+                    <table id="EGAtable center" style="margin-left: 150px;">
+                      <tbody style="border: 2px solid #7B1B58;">
+                      <tr class="center">
+                        <th scope="col" id="header" onclick="sortTable(0); classToggle()" class="bi bi-caret-down-fill">Ancestry</th>
+                        <th scope="col">Allele count</th>
+                        <th scope="col">Allele number</th>
+                        <th scope="col">Homozygous/hemizygous count</th>
+                        <th scope="col">Allele frequency</th>
+                      </tr>
+                      {% for resp in response %}
+                      <tr class="center">
+                        <td>{{resp}}</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                      </tr>
+
+          
+                  {% endfor %}
+                </tbody>
+                </table>
+                    {% endif %}
+                  
+                  </div>
             </div>
 
             </div>
@@ -47,12 +75,7 @@ background: linear-gradient(90deg, rgb(36, 0, 24) 0%, rgba(24,55,119,0.112504376
               
                 
             </div>  
-            <div class="col">
-              {% if response %}
-              {{response}}
-              {% endif %}
-            
-            </div>
+
           </div>
         </div>
 
